@@ -27,7 +27,7 @@ function PaintingList({ authors, locations }: IPaintingList) {
   const {
     data, isLoading, isFetching, isError,
   } = useQuery(
-    ['paintings', params],
+    ['paintings', qs.stringify(params)],
     () => DataService.getResponse(
       `paintings?${qs.stringify(
         deleteEmptyStringProperties(params),
