@@ -1,0 +1,19 @@
+.header {
+  width: 100%;
+  display: flex;
+  padding-top: 20px;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  svg {
+    color: black;
+  }
+  &.dark {
+    background: black;
+    svg {
+      color: white;
+    }
+  }
+}

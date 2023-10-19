@@ -1,0 +1,22 @@
+main {
+  flex-direction: column;
+  display: flex;
+  flex: 1 1 auto;
+  width: 100%;
+  justify-content: flex-start;
+  background: white;
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
+  font-family: Roboto;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-top: 0px;
+  padding: 3rem;
+  gap: 40px;
+  &.dark {
+    background: black;
+  }
+}

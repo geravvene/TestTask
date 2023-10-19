@@ -1,0 +1,73 @@
+.PaginationPage {
+  width: 41px;
+  height: 41px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  border: 1px solid black;
+  border-right: none;
+  color: black;
+  background: white;
+  &:first-child {
+    border-radius: 8px 0 0 8px;
+  }
+  &:last-child {
+    border-radius: 0 8px 8px 0;
+    border-right: 1px solid;
+  }
+  &:hover {
+    background: #ededed;
+    color: black;
+    border-color: black;
+  }
+  &:disabled {
+    border-color: #b3b3b3;
+    color: #b3b3b3;
+    background: white;
+    &:hover {
+      cursor: auto;
+      
+    }
+  }
+  &.dark {
+    border: 1px solid white;
+    color: white;
+    border-right: none;
+    background: black;
+    &:last-child {
+      border-right: 1px solid;
+    }
+    &:hover {
+      background: #464646;
+      color: white;
+      border-color: white;
+    }
+    &:disabled {
+      border-color: #4c4c4c;
+      color: #4c4c4c;
+      background: black;
+    }
+  }
+  &.WithActive {
+    background: black;
+    color: white;
+    border-color: black;
+    &:hover {
+      cursor: auto;
+      background: black;
+      color: white;
+      border-color: black;
+    }
+    &.dark {
+      background: white;
+      color: black;
+      border-color: white;
+      &:hover {
+        background: white;
+        color: black;
+        border-color: white;
+      }
+    }
+  }
+}
