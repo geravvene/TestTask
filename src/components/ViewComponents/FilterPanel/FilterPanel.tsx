@@ -7,9 +7,9 @@ import { TParams, IPaintingList } from '../../../types';
 const cx = cn.bind(style);
 
 interface IFilterPanel extends IPaintingList {
-  params: TParams
-  setParams: React.Dispatch<React.SetStateAction<TParams>>
-  isDark: boolean
+  params: TParams;
+  setParams: React.Dispatch<React.SetStateAction<TParams>>;
+  isDark: boolean;
 }
 
 function FilterPanel({
@@ -33,8 +33,9 @@ function FilterPanel({
           type="text"
           defaultValue={params.name_like}
           onChange={debounce(
-            (e: React.ChangeEvent<HTMLInputElement>) => setFilter('name_like', e.target.value),
-            1000,
+            (e: React.ChangeEvent<HTMLInputElement>) =>
+              setFilter('name_like', e.target.value),
+            1000
           )}
         />
       </div>
@@ -63,7 +64,7 @@ function FilterPanel({
         name="Location"
         value={
           locations.find(
-            (location) => location.id === Number(params?.locationId),
+            (location) => location.id === Number(params?.locationId)
           )?.location
         }
         clear={() => setFilter('locationId', '')}
@@ -87,8 +88,8 @@ function FilterPanel({
         value={
           params.created_gte || params.created_lte
             ? `${params.created_gte ? params.created_gte : '...'} - ${
-              params.created_lte ? params.created_lte : '...'
-            }`
+                params.created_lte ? params.created_lte : '...'
+              }`
             : undefined
         }
         clear={() => {
@@ -108,8 +109,11 @@ function FilterPanel({
               e.stopPropagation();
             }}
             onChange={debounce(
-              (e: React.ChangeEvent<HTMLInputElement>) => Number(e.target.value) ?? setFilter('created_gte', e.target.value),
-              1000,
+              (e: React.ChangeEvent<HTMLInputElement>) =>
+                Number(e.target.value) || e.target.value === ''
+                  ? setFilter('created_gte', e.target.value)
+                  : null,
+              1000
             )}
           />
           —
@@ -123,8 +127,11 @@ function FilterPanel({
               e.stopPropagation();
             }}
             onChange={debounce(
-              (e: React.ChangeEvent<HTMLInputElement>) =>Number(e.target.value) ?? setFilter('created_lte', e.target.value),
-              1000,
+              (e: React.ChangeEvent<HTMLInputElement>) =>
+                Number(e.target.value) || e.target.value === ''
+                  ? setFilter('created_lte', e.target.value)
+                  : null,
+              1000
             )}
           />
         </div>
