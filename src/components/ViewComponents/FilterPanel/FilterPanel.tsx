@@ -121,7 +121,6 @@ function FilterPanel({
             type="text"
             placeholder="before"
             id="inputCreatedTo"
-            pattern="\d*"
             defaultValue={params.created_lte}
             onClick={(e) => {
               e.stopPropagation();
