@@ -20,7 +20,7 @@ function Select({ children, value, clear, name, isDark }: ISelect) {
   useOutsideClick(ref, () => ref.current?.classList.remove(style.active));
   return (
     <div
-      onKeyDown={(e) => e.currentTarget.classList.toggle(style.active)}
+      onKeyDown={(e) => e.currentTarget.classList.add(style.active)}
       role="button"
       tabIndex={0}
       ref={ref}

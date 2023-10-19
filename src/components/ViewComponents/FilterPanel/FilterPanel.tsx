@@ -108,7 +108,7 @@ function FilterPanel({
               e.stopPropagation();
             }}
             onChange={debounce(
-              (e: React.ChangeEvent<HTMLInputElement>) => setFilter('created_gte', e.target.value),
+              (e: React.ChangeEvent<HTMLInputElement>) => Number(e.target.value) ?? setFilter('created_gte', e.target.value),
               1000,
             )}
           />
@@ -117,12 +117,13 @@ function FilterPanel({
             type="text"
             placeholder="before"
             id="inputCreatedTo"
+            pattern="\d*"
             defaultValue={params.created_lte}
             onClick={(e) => {
               e.stopPropagation();
             }}
             onChange={debounce(
-              (e: React.ChangeEvent<HTMLInputElement>) => setFilter('created_lte', e.target.value),
+              (e: React.ChangeEvent<HTMLInputElement>) =>Number(e.target.value) ?? setFilter('created_lte', e.target.value),
               1000,
             )}
           />
