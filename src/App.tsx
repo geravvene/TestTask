@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import cn from 'classnames/bind';
-import style from './scss/app.module.scss';
+import style from './app.module.scss';
 import Header from './components/ui/Header/Header';
 import PaintingList from './components/ViewComponents/PaintingsList/PaintingsList';
 import DataService from './services/data.service';
