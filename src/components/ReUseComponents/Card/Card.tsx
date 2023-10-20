@@ -14,13 +14,14 @@ function Card({ item, description }: ICard) {
   const [active, setActive] = useState(false);
   return (
     <div
+      className={style.card}  
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
-      className={style.card}  
     >
       <img
         alt={item.name}
         src={`https://test-front.framework.team${item.imageUrl}`} 
+        loading='lazy'
       />
       <div id={`info${item.id}`} className={cx('info', { active })}>
         {item.name}
