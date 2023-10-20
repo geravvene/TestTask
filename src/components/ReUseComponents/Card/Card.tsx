@@ -1,30 +1,28 @@
-import { useState } from 'react';
-import cn from 'classnames/bind';
-import style from './card.module.scss';
-import { TDescriptionLine } from '../../../types';
+import { useState } from "react";
+import cn from "classnames/bind";
+import style from "./card.module.scss";
+import { TDescriptionLine } from "../../../types";
 
 const cx = cn.bind(style);
 
 interface ICard {
-  item: { id: number; imageUrl: string; name: string }
-  description: TDescriptionLine[]
+  name: string;
+  description: TDescriptionLine[];
+  children: React.ReactNode;
+  className: string;
 }
 
-function Card({ item, description }: ICard) {
+function Card({ name, description, children, className }: ICard) {
   const [active, setActive] = useState(false);
   return (
     <div
-      className={style.card}  
+      className={cx("card", className)}
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
     >
-      <img
-        alt={item.name}
-        src={`https://test-front.framework.team${item.imageUrl}`} 
-        loading='lazy'
-      />
-      <div id={`info${item.id}`} className={cx('info', { active })}>
-        {item.name}
+      {children}
+      <div className={cx("info", { active })}>
+        {name}
         {description.map((line) => (
           <p key={line.id}>
             {`${line.property}:`}

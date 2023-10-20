@@ -1,15 +1,15 @@
 /* eslint-disable no-underscore-dangle */
-import Card from '../../ReUseComponents/Card/Card';
-import Pagination from '../../ReUseComponents/Pagination/Pagination';
-import { TPainting, TParams, IPaintingList } from '../../../types';
-import style from './paintings.module.scss';
+import Painting from "../Painting/Painting";
+import Pagination from "../../ReUseComponents/Pagination/Pagination";
+import { TPainting, TParams, IPaintingList } from "../../../types";
+import style from "./paintings.module.scss";
 
 interface IPaintings extends IPaintingList {
-  data: TPainting[]
-  params: TParams
-  setParams: React.Dispatch<React.SetStateAction<TParams>>
-  isDark: boolean
-  pagesAmount: number
+  data: TPainting[];
+  params: TParams;
+  setParams: React.Dispatch<React.SetStateAction<TParams>>;
+  isDark: boolean;
+  pagesAmount: number;
 }
 
 function Paintings({
@@ -27,30 +27,17 @@ function Paintings({
     <>
       <div className={style.grid}>
         {data.map((item) => (
-          <Card
-            key={item.id}
+          <Painting
+          key={item.id}
             item={item}
-            description={[
-              {
-                id: 1,
-                property: 'Author',
-                value:
-                  authors.find((author) => author.id === item.authorId)?.name
-                  ?? 'Not Stated',
-              },
-              {
-                id: 2,
-                property: 'Created',
-                value: item.created,
-              },
-              {
-                id: 3,
-                property: 'Location',
-                value:
-                  locations.find((location) => location.id === item.locationId)
-                    ?.location ?? 'Not Stated',
-              },
-            ]}
+            locationName={
+              locations.find((location) => location.id === item.locationId)
+                ?.location ?? "Not Stated"
+            }
+            authorName={
+              authors.find((author) => author.id === item.authorId)?.name ??
+              "Not Stated"
+            }
           />
         ))}
       </div>
