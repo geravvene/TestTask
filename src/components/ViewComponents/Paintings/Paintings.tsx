@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import Painting from "../Painting/Painting";
+import Card from "../../ReUseComponents/Card/Card";
 import Pagination from "../../ReUseComponents/Pagination/Pagination";
 import { TPainting, TParams, IPaintingList } from "../../../types";
 import style from "./paintings.module.scss";
@@ -27,18 +27,41 @@ function Paintings({
     <>
       <div className={style.grid}>
         {data.map((item) => (
-          <Painting
-          key={item.id}
-            item={item}
-            locationName={
-              locations.find((location) => location.id === item.locationId)
-                ?.location ?? "Not Stated"
-            }
-            authorName={
-              authors.find((author) => author.id === item.authorId)?.name ??
-              "Not Stated"
-            }
-          />
+          <Card
+            key={item.id}
+            name={item.name}
+            description={[
+              {
+                id: 1,
+                property: "Author",
+                value:
+                  authors.find((author) => author.id === item.authorId)?.name ??
+                  "Not Stated",
+              },
+              {
+                id: 2,
+                property: "Created",
+                value: item.created,
+              },
+              {
+                id: 3,
+                property: "Location",
+                value:
+                  locations.find((location) => location.id === item.locationId)
+                    ?.location ?? "Not Stated",
+              },
+            ]}
+            className={style.painting}
+          >
+            <img
+              alt={item.name}
+              src={`https://test-front.framework.team${item.imageUrl}`}
+              loading="lazy"
+              onError={(e) => {
+                e.currentTarget.src = `https://test-front.framework.team${item.imageUrl}`;
+              }}
+            />
+          </Card>
         ))}
       </div>
       <Pagination
