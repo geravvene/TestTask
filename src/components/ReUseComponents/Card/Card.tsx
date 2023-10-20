@@ -16,11 +16,11 @@ function Card({ item, description }: ICard) {
     <div
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
-      className={style.card}
+      className={style.card}  
     >
       <img
         alt={item.name}
-        src={`https://test-front.framework.team${item.imageUrl}`}
+        src={`https://test-front.framework.team${item.imageUrl}`} 
       />
       <div id={`info${item.id}`} className={cx('info', { active })}>
         {item.name}
