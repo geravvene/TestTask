@@ -1,6 +1,7 @@
+import { useRef } from 'react';
 import cn from 'classnames/bind';
 import style from './filterUL.module.scss';
-import { useRef } from 'react';
+
 
 const cx = cn.bind(style);
 
@@ -17,7 +18,7 @@ const hoverFunction = (elem: HTMLLIElement, hoverElem: HTMLDivElement) => {
     'margin-top',
     `${
       elem.getBoundingClientRect().y -
-      hoverElem.parentNode.getBoundingClientRect().y
+      hoverElem.parentElement!.getBoundingClientRect().y
     }px`
   );
 };
@@ -29,7 +30,7 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
       <div ref={ref} className={cx('hover', { dark: isDark })} />
       <ul
         className={cx('filter', { dark: isDark })}
-        onMouseLeave={() => ref.current.style.setProperty('height', "0px")}
+        onMouseLeave={() => ref.current!.style.setProperty('height', "0px")}
       >
         {data.map((item) => (
           <li
