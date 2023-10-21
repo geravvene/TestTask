@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import cn from 'classnames/bind';
 import style from './filterUL.module.scss';
 
-
 const cx = cn.bind(style);
 
 interface IFilterUL {
@@ -28,14 +27,12 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
   return (
     <>
       <div ref={ref} className={cx('hover', { dark: isDark })} />
-      <ul
-        className={cx('filter', { dark: isDark })}
-        onMouseLeave={() => ref.current!.style.setProperty('height', "0px")}
-      >
+      <ul className={cx('filter', { dark: isDark })} onScroll={() => ref.current!.style.setProperty('height', '0px')}>
         {data.map((item) => (
           <li
             key={item.id}
             onMouseEnter={(e) => hoverFunction(e.currentTarget, ref.current!)}
+            onMouseLeave={() => ref.current!.style.setProperty('height', '0px')}
           >
             <button
               type="button"

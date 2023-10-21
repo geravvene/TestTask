@@ -1,9 +1,9 @@
 ul {
   top: 0;
   position: absolute;
-  max-height: 300px;
+  height: 100%;
   overflow-y: scroll;
-  width: calc(100% - 12px);
+  width: calc(100% - 6px);
   li {
     color: black;
     button {
@@ -27,6 +27,9 @@ ul {
   }
   &::-webkit-scrollbar-track {
     background: inherit;
+  }
+  &::-webkit-scrollbar-thumb {
+    height: 10%;
   }
 }
 .hover {
