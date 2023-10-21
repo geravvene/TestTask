@@ -1,0 +1,33 @@
+ul {
+  position: absolute;
+  max-height: 300px;
+  overflow-y: scroll;
+  width: calc(100% - 12px);
+  li {
+    button {
+      width: 100%;
+      font-size: 16px;
+      padding: 12px;
+      padding-left: 24px;
+      transition: 0.2s ease;
+      &:hover {
+        background: black;
+        color: white;
+      }
+    }
+  }
+  &.dark {
+    button {
+      &:hover {
+        background-color: white;
+        color: black;
+      }
+    }
+  }
+  &::-webkit-scrollbar-track {
+    background: inherit;
+  }
+}
+#hover{
+  min-height: 300px;
+}

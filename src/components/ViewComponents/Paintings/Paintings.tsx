@@ -48,7 +48,7 @@ function Paintings({
                 property: "Location",
                 value:
                   locations.find((location) => location.id === item.locationId)
-                    ?.location ?? "Not Stated",
+                    ?.name ?? "Not Stated",
               },
             ]}
             className={style.painting}
@@ -58,7 +58,8 @@ function Paintings({
               src={`https://test-front.framework.team${item.imageUrl}`}
               loading="lazy"
               onError={(e) => {
-                e.currentTarget.src = `https://test-front.framework.team${item.imageUrl}`;
+                e.currentTarget.src = `https://test-front.framework.team${item.imageUrl}`
+                e.currentTarget.onerror = null;
               }}
             />
           </Card>

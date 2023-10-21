@@ -3,6 +3,7 @@ import cn from 'classnames/bind';
 import style from './filterPanel.module.scss';
 import Select from '../../ReUseComponents/Select/Select';
 import { TParams, IPaintingList } from '../../../types';
+import FilterUL from '../../ReUseComponents/FilterUL/FilterUL';
 
 const cx = cn.bind(style);
 
@@ -47,41 +48,29 @@ function FilterPanel({
         clear={() => setFilter('authorId', '')}
         isDark={isDark}
       >
-        <ul>
-          {authors.map((item) => (
-            <li key={item.id}>
-              <button
-                type="button"
-                onClick={() => setFilter('authorId', String(item.id))}
-              >
-                {item.name}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <FilterUL
+          data={authors}
+          onClick={setFilter}
+          filterName="authorId"
+          isDark={isDark}
+        />
       </Select>
       <Select
         name="Location"
         value={
           locations.find(
             (location) => location.id === Number(params?.locationId)
-          )?.location
+          )?.name
         }
         clear={() => setFilter('locationId', '')}
         isDark={isDark}
       >
-        <ul>
-          {locations.map((item) => (
-            <li key={item.id}>
-              <button
-                type="button"
-                onClick={() => setFilter('locationId', String(item.id))}
-              >
-                {item.location}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <FilterUL
+          data={locations}
+          onClick={setFilter}
+          filterName="locationId"
+          isDark={isDark}
+        />
       </Select>
       <Select
         name="Created"

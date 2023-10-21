@@ -6,14 +6,13 @@ import Header from './components/ui/Header/Header';
 import PaintingList from './components/ViewComponents/PaintingsList/PaintingsList';
 import DataService from './services/data.service';
 import useTypedSelector from './hooks/useTypedSelector';
+import { TLocation } from './types';
 
 const cx = cn.bind(style);
 
 function App() {
   const { isDark } = useTypedSelector((state) => state.themeReducer);
-  const authors = useQuery(['authors'], () =>
-    DataService.getData('authors')
-  );
+  const authors = useQuery(['authors'], () => DataService.getData('authors'));
   const locations = useQuery(['locations'], () =>
     DataService.getData('locations')
   );
@@ -36,7 +35,13 @@ function App() {
         <Routes>
           <Route
             element={
-              <PaintingList authors={authors.data} locations={locations.data} />
+              <PaintingList
+                authors={authors.data}
+                locations={locations.data.map((item : TLocation) => ({
+                  id: item.id,
+                  name: item.location,
+                }))}
+              />
             }
             path="*"
           />

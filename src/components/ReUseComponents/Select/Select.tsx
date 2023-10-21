@@ -48,7 +48,7 @@ function Select({ children, value, clear, name, isDark }: ISelect) {
         )}
         <SelectArrow />
       </div>
-      <div className={style.dropdown}>{children}</div>
+      <div className={style.dropdown}><div/>{children}</div>
     </div>
   );
 }

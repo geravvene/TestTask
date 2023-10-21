@@ -7,6 +7,11 @@ export type TLocation = {
   location: string
 };
 
+export type TNewLocation = {
+  id: number
+  name: string
+};
+
 export type TPainting = {
   id: number
   authorId: number
@@ -33,5 +38,5 @@ export type TDescriptionLine = {
 
 export interface IPaintingList {
   authors: TAuthor[]
-  locations: TLocation[]
+  locations: TNewLocation[]
 }
