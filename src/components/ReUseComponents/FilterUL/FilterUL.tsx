@@ -1,4 +1,5 @@
-import { useRef, useState} from 'react';
+import { isEqual } from 'lodash';
+import { useRef, useState, memo } from 'react';
 import cn from 'classnames/bind';
 import style from './filterUL.module.scss';
 
@@ -22,6 +23,15 @@ const hoverFunction = (elem: HTMLLIElement, hoverElem: HTMLDivElement) => {
   );
 };
 
+function isEquals(prev: IFilterUL, next: IFilterUL) {
+  return (
+    isEqual(prev.data, next.data) &&
+    isEqual(prev.onClick, next.onClick) &&
+    prev.filterName === next.filterName &&
+    prev.isDark === next.isDark
+  );
+}
+
 function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
   const [hover, setHover] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -29,6 +39,7 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
     ref.current!.style.setProperty('height', '0px');
     setHover(0);
   };
+  if (filterName === 'locationId') console.log('ddd');
   return (
     <>
       <div ref={ref} className={cx('hoverBlock', { dark: isDark })} />
@@ -56,4 +67,4 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
   );
 }
 
-export default FilterUL;
+export default memo(FilterUL, isEquals);
