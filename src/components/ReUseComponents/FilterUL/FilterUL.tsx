@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import cn from 'classnames/bind';
 import style from './filterUL.module.scss';
 
@@ -23,16 +23,30 @@ const hoverFunction = (elem: HTMLLIElement, hoverElem: HTMLDivElement) => {
 };
 
 function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
+  const [hover, setHover] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   return (
     <>
       <div ref={ref} className={cx('hover', { dark: isDark })} />
-      <ul className={cx('filter', { dark: isDark })} onScroll={() => ref.current!.style.setProperty('height', '0px')}>
+      <ul
+        className={cx('filter', { dark: isDark })}
+        onScroll={() => {
+          ref.current!.style.setProperty('height', '0px');
+          setHover(0);
+        }}
+      >
         {data.map((item) => (
           <li
+            className={cx({ sas: hover === item.id })}
             key={item.id}
-            onMouseEnter={(e) => hoverFunction(e.currentTarget, ref.current!)}
-            onMouseLeave={() => ref.current!.style.setProperty('height', '0px')}
+            onMouseEnter={(e) => {
+              setHover(item.id);
+              hoverFunction(e.currentTarget, ref.current!);
+            }}
+            onMouseLeave={() => {
+              ref.current!.style.setProperty('height', '0px');
+              setHover(0);
+            }}
           >
             <button
               type="button"

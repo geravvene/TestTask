@@ -1,4 +1,4 @@
-ul {
+.filter {
   top: 0;
   position: absolute;
   height: 100%;
@@ -11,16 +11,15 @@ ul {
       font-size: 16px;
       padding: 12px;
       padding-left: 24px;
-      transition: 0.2s ease;
     }
-    &:hover {
+    &.sas {
       color: white;
     }
   }
   &.dark {
     li {
       color: white;
-      &:hover {
+      &.sas {
         color: black;
       }
     }
