@@ -25,16 +25,14 @@ const hoverFunction = (elem: HTMLLIElement, hoverElem: HTMLDivElement) => {
 function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
   const [hover, setHover] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
+  const resetHover = () => {
+    ref.current!.style.setProperty('height', '0px');
+    setHover(0);
+  };
   return (
     <>
       <div ref={ref} className={cx('hoverBlock', { dark: isDark })} />
-      <ul
-        className={cx('filter', { dark: isDark })}
-        onScroll={() => {
-          ref.current!.style.setProperty('height', '0px');
-          setHover(0);
-        }}
-      >
+      <ul className={cx('filter', { dark: isDark })} onScroll={resetHover}>
         {data.map((item) => (
           <li
             className={cx({ hover: hover === item.id })}
@@ -43,10 +41,7 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
               setHover(item.id);
               hoverFunction(e.currentTarget, ref.current!);
             }}
-            onMouseLeave={() => {
-              ref.current!.style.setProperty('height', '0px');
-              setHover(0);
-            }}
+            onMouseLeave={resetHover}
           >
             <button
               type="button"
