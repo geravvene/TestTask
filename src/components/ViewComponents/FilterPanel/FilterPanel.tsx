@@ -13,6 +13,14 @@ interface IFilterPanel extends IPaintingList {
   isDark: boolean;
 }
 
+function valueToCreated(str: string) {
+  let newStr = str;
+  while (newStr.length < 4) {
+    newStr += '0';
+  }
+  return newStr;
+}
+
 function FilterPanel({
   authors,
   locations,
@@ -107,8 +115,9 @@ function FilterPanel({
             }}
             onChange={debounce(
               (e: React.ChangeEvent<HTMLInputElement>) =>
-                Number(e.target.value) || e.target.value === ''
-                  ? setFilter('created_gte', e.target.value)
+                (Number(e.target.value) && e.target.value.length <= 4) ||
+                e.target.value === ''
+                  ? setFilter('created_gte', valueToCreated(e.target.value))
                   : null,
               1000
             )}
@@ -124,8 +133,9 @@ function FilterPanel({
             }}
             onChange={debounce(
               (e: React.ChangeEvent<HTMLInputElement>) =>
-                Number(e.target.value) || e.target.value === ''
-                  ? setFilter('created_lte', e.target.value)
+                (Number(e.target.value) && e.target.value.length <= 4) ||
+                e.target.value === ''
+                  ? setFilter('created_lte', valueToCreated(e.target.value))
                   : null,
               1000
             )}
