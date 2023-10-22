@@ -1,5 +1,5 @@
 import { isEqual } from 'lodash';
-import { useRef, useState, memo } from 'react';
+import { useRef, useState, memo, useCallback } from 'react';
 import cn from 'classnames/bind';
 import style from './filterUL.module.scss';
 
@@ -35,10 +35,10 @@ function isEquals(prev: IFilterUL, next: IFilterUL) {
 function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
   const [hover, setHover] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
-  const resetHover = () => {
+  const resetHover = useCallback(() => {
     ref.current!.style.setProperty('height', '0px');
     setHover(0);
-  };
+  }, []);
   return (
     <>
       <div ref={ref} className={cx('hoverBlock', { dark: isDark })} />
