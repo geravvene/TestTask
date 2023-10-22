@@ -12,10 +12,11 @@ export interface ISelect {
   isDark: boolean;
   value: string | undefined;
   name: string;
+  absolute: boolean
   clear: () => void;
 }
 
-function Select({ children, value, clear, name, isDark }: ISelect) {
+function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
   const ref = useRef<HTMLInputElement>(null);
   useOutsideClick(ref, () => ref.current?.classList.remove(style.active));
   return (
@@ -26,6 +27,7 @@ function Select({ children, value, clear, name, isDark }: ISelect) {
       ref={ref}
       className={cx("menu", {
         dark: isDark,
+        absolute
       })}
       onClick={(e) => e.currentTarget.classList.toggle(style.active)}
     >

@@ -47,6 +47,7 @@ function FilterPanel({
         }
         clear={() => setFilter('authorId', '')}
         isDark={isDark}
+        absolute
       >
         <FilterUL
           data={authors}
@@ -64,6 +65,7 @@ function FilterPanel({
         }
         clear={() => setFilter('locationId', '')}
         isDark={isDark}
+        absolute
       >
         <FilterUL
           data={locations}
@@ -87,6 +89,7 @@ function FilterPanel({
           $('#inputCreatedTo').val('');
         }}
         isDark={isDark}
+        absolute={false}
       >
         <div className={style.inputContainer}>
           <input
