@@ -11,11 +11,11 @@ import style from './Pagination.module.scss';
 const cx = cn.bind(style);
 
 interface IPagination {
-  isDarkTheme: boolean
-  pagesAmount: number
-  currentPage: number
-  className: string
-  onChange: (currentPage: number) => void
+  isDarkTheme: boolean;
+  pagesAmount: number;
+  currentPage: number;
+  className: string;
+  onChange: (currentPage: number) => void;
 }
 
 function Pagination({

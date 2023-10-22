@@ -1,6 +1,7 @@
-import cn from "classnames/bind";
-import style from "./card.module.scss";
-import { TDescriptionLine } from "../../../types";
+import { memo } from 'react';
+import cn from 'classnames/bind';
+import style from './card.module.scss';
+import { TDescriptionLine } from '../../../types';
 
 const cx = cn.bind(style);
 
@@ -13,9 +14,7 @@ interface ICard {
 
 function Card({ name, description, children, className }: ICard) {
   return (
-    <div
-      className={cx("card", className)}
-    >
+    <div className={cx('card', className)}>
       {children}
       <div className={style.info}>
         {name}
@@ -29,4 +28,4 @@ function Card({ name, description, children, className }: ICard) {
     </div>
   );
 }
-export default Card;
+export default memo(Card);
