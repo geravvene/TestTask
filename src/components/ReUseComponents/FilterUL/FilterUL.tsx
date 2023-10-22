@@ -27,7 +27,7 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
   const ref = useRef<HTMLDivElement>(null);
   return (
     <>
-      <div ref={ref} className={cx('hover', { dark: isDark })} />
+      <div ref={ref} className={cx('hoverBlock', { dark: isDark })} />
       <ul
         className={cx('filter', { dark: isDark })}
         onScroll={() => {
@@ -37,7 +37,7 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
       >
         {data.map((item) => (
           <li
-            className={cx({ sas: hover === item.id })}
+            className={cx({ hover: hover === item.id })}
             key={item.id}
             onMouseEnter={(e) => {
               setHover(item.id);

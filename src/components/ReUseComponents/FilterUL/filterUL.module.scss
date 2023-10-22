@@ -12,14 +12,14 @@
       padding: 12px;
       padding-left: 24px;
     }
-    &.sas {
+    &.hover {
       color: white;
     }
   }
   &.dark {
     li {
       color: white;
-      &.sas {
+      &.hover {
         color: black;
       }
     }
@@ -31,7 +31,7 @@
     height: 10%;
   }
 }
-.hover {
+.hoverBlock {
   width: 100%;
   background-color: black;
   &.dark {
