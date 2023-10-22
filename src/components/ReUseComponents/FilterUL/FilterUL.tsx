@@ -39,7 +39,6 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
     ref.current!.style.setProperty('height', '0px');
     setHover(0);
   };
-  if (filterName === 'locationId') console.log('ddd');
   return (
     <>
       <div ref={ref} className={cx('hoverBlock', { dark: isDark })} />
