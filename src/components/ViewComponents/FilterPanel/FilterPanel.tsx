@@ -13,12 +13,17 @@ interface IFilterPanel extends IPaintingList {
   isDark: boolean;
 }
 
-function valueToCreated(str: string) {
+function valueToCreated(str: string, func: (str: string) => void) {
+  if (str === '') {
+    func(str);
+    return;
+  }
+  if (!Number(str) || !(str.length <= 4)) return;
   let newStr = str;
   while (newStr.length < 4) {
     newStr += '0';
   }
-  return newStr;
+  func(newStr);
 }
 
 function FilterPanel({
@@ -115,10 +120,9 @@ function FilterPanel({
             }}
             onChange={debounce(
               (e: React.ChangeEvent<HTMLInputElement>) =>
-                (Number(e.target.value) && e.target.value.length <= 4) ||
-                e.target.value === ''
-                  ? setFilter('created_gte', valueToCreated(e.target.value))
-                  : null,
+                valueToCreated(e.target.value, (str) =>
+                  setFilter('created_gte', str)
+                ),
               1000
             )}
           />
@@ -133,10 +137,9 @@ function FilterPanel({
             }}
             onChange={debounce(
               (e: React.ChangeEvent<HTMLInputElement>) =>
-                (Number(e.target.value) && e.target.value.length <= 4) ||
-                e.target.value === ''
-                  ? setFilter('created_lte', valueToCreated(e.target.value))
-                  : null,
+                valueToCreated(e.target.value, (str) =>
+                  setFilter('created_lte', str)
+                ),
               1000
             )}
           />
