@@ -1,4 +1,3 @@
-import { useState } from "react";
 import cn from "classnames/bind";
 import style from "./card.module.scss";
 import { TDescriptionLine } from "../../../types";
@@ -13,15 +12,12 @@ interface ICard {
 }
 
 function Card({ name, description, children, className }: ICard) {
-  const [active, setActive] = useState(false);
   return (
     <div
       className={cx("card", className)}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
     >
       {children}
-      <div className={cx("info", { active })}>
+      <div className={style.info}>
         {name}
         {description.map((line) => (
           <p key={line.id}>
