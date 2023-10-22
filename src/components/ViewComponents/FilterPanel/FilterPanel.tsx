@@ -84,7 +84,12 @@ function FilterPanel({
             : undefined
         }
         clear={() => {
-          setParams({ ...params, created_gte: '', created_lte: '' });
+          setParams({
+            ...params,
+            created_gte: '',
+            created_lte: '',
+            _page: '1',
+          });
           $('#inputCreatedFrom').val('');
           $('#inputCreatedTo').val('');
         }}
