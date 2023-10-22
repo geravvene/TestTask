@@ -9,6 +9,11 @@
   border-right: none;
   color: black;
   background: white;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  text-transform: uppercase;
   &:first-child {
     border-radius: 8px 0 0 8px;
   }
@@ -27,7 +32,6 @@
     background: white;
     &:hover {
       cursor: auto;
-      
     }
   }
   &.dark {
