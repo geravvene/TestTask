@@ -1,5 +1,5 @@
 import cn from "classnames/bind";
-import { useRef, memo } from "react";
+import { useRef} from "react";
 import style from "./select.module.scss";
 import { ReactComponent as SelectArrow } from "../../../assets/svg/selectArrow.svg";
 import { ReactComponent as Cross } from "../../../assets/svg/cross.svg";
@@ -55,4 +55,4 @@ function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
   );
 }
 
-export default memo(Select);
+export default Select;

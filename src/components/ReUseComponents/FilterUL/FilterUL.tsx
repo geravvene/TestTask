@@ -1,4 +1,4 @@
-import { useRef, useState, memo } from 'react';
+import { useRef, useState} from 'react';
 import cn from 'classnames/bind';
 import style from './filterUL.module.scss';
 
@@ -56,4 +56,4 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
   );
 }
 
-export default memo(FilterUL);
+export default FilterUL;

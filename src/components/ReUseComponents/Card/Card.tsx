@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import cn from 'classnames/bind';
 import style from './card.module.scss';
 import { TDescriptionLine } from '../../../types';
@@ -28,4 +27,4 @@ function Card({ name, description, children, className }: ICard) {
     </div>
   );
 }
-export default memo(Card);
+export default Card;
