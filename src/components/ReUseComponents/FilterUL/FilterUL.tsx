@@ -6,7 +6,7 @@ const cx = cn.bind(style);
 
 interface IFilterUL {
   data: { id: number; name: string }[];
-  onClick: (filterName: string, value: any) => void;
+  change: (filterName: string, value: any) => void;
   filterName: string;
   isDark: boolean;
 }
@@ -22,7 +22,7 @@ const hoverFunction = (elem: HTMLLIElement, hoverElem: HTMLDivElement) => {
   );
 };
 
-function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
+function FilterUL({ data, change, filterName, isDark }: IFilterUL) {
   const [hover, setHover] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const resetHover = useCallback(() => {
@@ -36,6 +36,12 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
     },
     []
   );
+  const onClickChange = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      change(filterName, String(e.currentTarget.value));
+    },
+    [change]
+  );
   return (
     <>
       <div ref={ref} className={cx('hoverBlock', { dark: isDark })} />
@@ -48,10 +54,7 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
             onMouseEnter={onHover}
             onMouseLeave={resetHover}
           >
-            <button
-              type='button'
-              onClick={() => onClick(filterName, String(item.id))}
-            >
+            <button type="button" value={item.id} onClick={onClickChange}>
               {item.name}
             </button>
           </li>

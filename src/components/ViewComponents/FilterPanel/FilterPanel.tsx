@@ -79,7 +79,7 @@ function FilterPanel({
       >
         <FilterUL
           data={authors}
-          onClick={setFilter}
+          change={setFilter}
           filterName='authorId'
           isDark={isDark}
         />
@@ -97,7 +97,7 @@ function FilterPanel({
       >
         <FilterUL
           data={locations}
-          onClick={setFilter}
+          change={setFilter}
           filterName='locationId'
           isDark={isDark}
         />
