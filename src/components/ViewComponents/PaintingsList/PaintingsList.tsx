@@ -20,7 +20,7 @@ const deleteEmptyStringProperties = (obj: object) => Object.fromEntries(Object.e
 function PaintingList({ authors, locations }: IPaintingList) {
   const { isDark } = useTypedSelector((state) => state.themeReducer);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [params, setParams] = useState<TParams>(
+  const [params, setParams] = useState(
     (): TParams => ({
       _page: '1',
       name_like: '',
