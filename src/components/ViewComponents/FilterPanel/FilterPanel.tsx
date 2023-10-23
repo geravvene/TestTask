@@ -60,7 +60,14 @@ function FilterPanel({
     () => authors.find((author) => author.id === Number(params?.authorId)),
     [params, authors]
   );
- 
+  const inputRangeChange = useCallback(
+    debounce(
+      (e: React.ChangeEvent<HTMLInputElement>) =>
+        valueToCreated(e.target.value, (str) => setFilter(e.target.id, str)),
+      1000
+    ),
+    []
+  );
   return (
     <div className={style.container}>
       <div>
@@ -138,13 +145,7 @@ function FilterPanel({
             onClick={(e) => {
               e.stopPropagation();
             }}
-            onChange={debounce(
-              (e: React.ChangeEvent<HTMLInputElement>) =>
-                valueToCreated(e.target.value, (str) =>
-                  setFilter('created_gte', str)
-                ),
-              1000
-            )}
+            onChange={inputRangeChange}
           />
           —
           <input
@@ -155,13 +156,7 @@ function FilterPanel({
             onClick={(e) => {
               e.stopPropagation();
             }}
-            onChange={debounce(
-              (e: React.ChangeEvent<HTMLInputElement>) =>
-                valueToCreated(e.target.value, (str) =>
-                  setFilter('created_lte', str)
-                ),
-              1000
-            )}
+            onChange={inputRangeChange}
           />
         </div>
       </Select>
