@@ -16,6 +16,14 @@ export interface ISelect {
   clear: () => void;
 }
 
+const toggleSelect = (
+  e:
+    | React.MouseEvent<HTMLDivElement, MouseEvent>
+    | React.KeyboardEvent<HTMLDivElement>
+) => {
+  e.currentTarget.classList.toggle(style.active);
+};
+
 function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
   const ref = useRef<HTMLInputElement>(null);
   useOutsideClick(ref, () => ref.current?.classList.remove(style.active));
@@ -26,16 +34,10 @@ function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
     },
     []
   );
-  const toggleSelect = useCallback(
-    (e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>) => {
-      e.currentTarget.classList.toggle(style.active);
-    },
-    []
-  );
   return (
     <div
       onKeyDown={toggleSelect}
-      role='button'
+      role="button"
       tabIndex={0}
       ref={ref}
       className={cx('menu', {
@@ -48,7 +50,7 @@ function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
         {value ? (
           <div>
             <p>{value}</p>
-            <button type='button' onClick={clearSelect}>
+            <button type="button" onClick={clearSelect}>
               <Cross />
             </button>
           </div>
