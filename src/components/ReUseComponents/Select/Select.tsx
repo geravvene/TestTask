@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import cn from 'classnames/bind';
 import { useRef, useCallback } from 'react';
 import style from './select.module.scss';
@@ -36,7 +37,6 @@ function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
   );
   return (
     <div
-      onKeyDown={toggleSelect}
       role="button"
       tabIndex={0}
       ref={ref}

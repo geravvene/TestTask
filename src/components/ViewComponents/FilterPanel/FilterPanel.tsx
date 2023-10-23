@@ -60,6 +60,7 @@ function FilterPanel({
     () => authors.find((author) => author.id === Number(params?.authorId)),
     [params, authors]
   );
+ 
   return (
     <div className={style.container}>
       <div>
@@ -68,6 +69,7 @@ function FilterPanel({
             dark: isDark,
           })}
           placeholder="Name"
+          id="name_like"
           type="text"
           defaultValue={params.name_like}
           onChange={debounce(
@@ -121,15 +123,15 @@ function FilterPanel({
             created_lte: '',
             _page: '1',
           });
-          $('#inputCreatedFrom').val('');
-          $('#inputCreatedTo').val('');
+          $('#created_gte').val('');
+          $('#created_lte').val('');
         }}
         isDark={isDark}
         absolute={false}
       >
         <div className={style.inputContainer}>
           <input
-            id="inputCreatedFrom"
+            id="created_gte"
             placeholder="from"
             type="text"
             defaultValue={params.created_gte}
@@ -148,7 +150,7 @@ function FilterPanel({
           <input
             type="text"
             placeholder="before"
-            id="inputCreatedTo"
+            id="created_lte"
             defaultValue={params.created_lte}
             onClick={(e) => {
               e.stopPropagation();
