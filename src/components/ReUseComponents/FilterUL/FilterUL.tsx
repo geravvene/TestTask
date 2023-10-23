@@ -59,7 +59,7 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
             onMouseLeave={resetHover}
           >
             <button
-              type="button"
+              type='button'
               onClick={() => onClick(filterName, String(item.id))}
             >
               {item.name}

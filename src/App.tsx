@@ -43,7 +43,7 @@ function App() {
                 }))}
               />
             }
-            path="*"
+            path='*'
           />
         </Routes>
       </main>

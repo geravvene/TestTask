@@ -19,7 +19,7 @@ function PaginationPage({
 }: PaginationPageProps) {
   return (
     <button
-      type="button"
+      type='button'
       className={cx(
         'PaginationPage',
         {

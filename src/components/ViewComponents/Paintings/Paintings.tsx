@@ -60,7 +60,7 @@ function Paintings({
             <img
               alt={item.name}
               src={`https://test-front.framework.team${item.imageUrl}`}
-              loading="lazy"
+              loading='lazy'
               onError={(e) => {
                 e.currentTarget.src = `https://test-front.framework.team${item.imageUrl}`;
                 e.currentTarget.onerror = null;
@@ -70,7 +70,7 @@ function Paintings({
         ))}
       </div>
       <Pagination
-        className=""
+        className=''
         pagesAmount={pagesAmount}
         currentPage={Number(params._page)}
         onChange={changePage}

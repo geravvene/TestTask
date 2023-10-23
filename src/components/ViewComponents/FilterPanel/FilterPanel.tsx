@@ -58,8 +58,8 @@ function FilterPanel({
           className={cx('searchInput', {
             dark: isDark,
           })}
-          placeholder="Name"
-          type="text"
+          placeholder='Name'
+          type='text'
           defaultValue={params.name_like}
           onChange={debounce(
             (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -69,7 +69,7 @@ function FilterPanel({
         />
       </div>
       <Select
-        name="Author"
+        name='Author'
         value={
           authors.find((author) => author.id === Number(params.authorId))?.name
         }
@@ -80,12 +80,12 @@ function FilterPanel({
         <FilterUL
           data={authors}
           onClick={setFilter}
-          filterName="authorId"
+          filterName='authorId'
           isDark={isDark}
         />
       </Select>
       <Select
-        name="Location"
+        name='Location'
         value={
           locations.find(
             (location) => location.id === Number(params?.locationId)
@@ -98,12 +98,12 @@ function FilterPanel({
         <FilterUL
           data={locations}
           onClick={setFilter}
-          filterName="locationId"
+          filterName='locationId'
           isDark={isDark}
         />
       </Select>
       <Select
-        name="Created"
+        name='Created'
         value={
           params.created_gte || params.created_lte
             ? `${params.created_gte ? params.created_gte : '...'} - ${
@@ -126,9 +126,9 @@ function FilterPanel({
       >
         <div className={style.inputContainer}>
           <input
-            id="inputCreatedFrom"
-            placeholder="from"
-            type="text"
+            id='inputCreatedFrom'
+            placeholder='from'
+            type='text'
             defaultValue={params.created_gte}
             onClick={(e) => {
               e.stopPropagation();
@@ -143,9 +143,9 @@ function FilterPanel({
           />
           —
           <input
-            type="text"
-            placeholder="before"
-            id="inputCreatedTo"
+            type='text'
+            placeholder='before'
+            id='inputCreatedTo'
             defaultValue={params.created_lte}
             onClick={(e) => {
               e.stopPropagation();
