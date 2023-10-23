@@ -60,6 +60,14 @@ function FilterPanel({
     () => authors.find((author) => author.id === Number(params?.authorId)),
     [params, authors]
   );
+  const inputSearchChange = useCallback(
+    debounce(
+      (e: React.ChangeEvent<HTMLInputElement>) =>
+        setFilter(e.target.id, e.target.value),
+      1000
+    ),
+    []
+  );
   const inputRangeChange = useCallback(
     debounce(
       (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -79,11 +87,7 @@ function FilterPanel({
           id="name_like"
           type="text"
           defaultValue={params.name_like}
-          onChange={debounce(
-            (e: React.ChangeEvent<HTMLInputElement>) =>
-              setFilter('name_like', e.target.value),
-            1000
-          )}
+          onChange={inputSearchChange}
         />
       </div>
       <Select
