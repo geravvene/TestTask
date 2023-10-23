@@ -1,5 +1,4 @@
-import { isEqual } from 'lodash';
-import { useRef, useState, memo, useCallback } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import cn from 'classnames/bind';
 import style from './filterUL.module.scss';
 
@@ -22,15 +21,6 @@ const hoverFunction = (elem: HTMLLIElement, hoverElem: HTMLDivElement) => {
     }px`
   );
 };
-
-function isEquals(prev: IFilterUL, next: IFilterUL) {
-  return (
-    isEqual(prev.data, next.data) &&
-    isEqual(prev.onClick, next.onClick) &&
-    prev.filterName === next.filterName &&
-    prev.isDark === next.isDark
-  );
-}
 
 function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
   const [hover, setHover] = useState(0);
@@ -71,4 +61,4 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
   );
 }
 
-export default memo(FilterUL, isEquals);
+export default FilterUL;
