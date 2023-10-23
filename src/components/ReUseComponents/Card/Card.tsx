@@ -12,7 +12,6 @@ interface ICard {
 }
 
 function Card({ name, description, children, className }: ICard) {
-  console.log("ddd")
   return (
     <div className={cx('card', className)}>
       {children}
