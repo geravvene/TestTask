@@ -1,4 +1,5 @@
 import cn from 'classnames/bind';
+
 import style from './card.module.scss';
 import { TDescriptionLine } from '../../../types';
 

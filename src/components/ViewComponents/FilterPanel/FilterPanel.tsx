@@ -1,7 +1,9 @@
 import { useCallback, memo, useMemo } from 'react';
+
 import { isEqual, omit } from 'lodash';
 import debounce from 'debounce';
 import cn from 'classnames/bind';
+
 import style from './filterPanel.module.scss';
 import Select from '../../ReUseComponents/Select/Select';
 import { TParams, IPaintingList } from '../../../types';

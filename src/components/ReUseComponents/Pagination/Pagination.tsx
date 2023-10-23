@@ -1,4 +1,5 @@
 import cn from 'classnames/bind';
+
 import PaginationPageWithActive from './PaginationPageWithActive';
 import PaginationPage from './PaginationPage';
 import { ReactComponent as DoubleArrowL } from '../../../assets/svg/doubleArrowL.svg';

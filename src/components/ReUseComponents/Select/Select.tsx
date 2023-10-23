@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import cn from 'classnames/bind';
 import { useRef, useCallback } from 'react';
+
+import cn from 'classnames/bind';
+
 import style from './select.module.scss';
 import { ReactComponent as SelectArrow } from '../../../assets/svg/selectArrow.svg';
 import { ReactComponent as Cross } from '../../../assets/svg/cross.svg';

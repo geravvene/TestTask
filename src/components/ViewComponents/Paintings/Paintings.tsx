@@ -1,5 +1,7 @@
 import { memo } from 'react';
+
 import { isEqual } from 'lodash';
+
 import Card from '../../ReUseComponents/Card/Card';
 import { TPainting, IPaintingList } from '../../../types';
 import style from './paintings.module.scss';

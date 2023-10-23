@@ -1,4 +1,5 @@
 import cn from 'classnames/bind';
+
 import PaginationPage, { PaginationPageProps } from './PaginationPage';
 import style from './PaginationPage.module.scss';
 

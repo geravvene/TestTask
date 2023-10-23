@@ -1,8 +1,10 @@
 /* eslint-disable no-underscore-dangle */
-import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState, useCallback } from 'react';
-import qs from 'qs';
+import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
+
+import qs from 'qs';
+
 import DataService from '../../../services/data.service';
 import style from './paintingsList.module.scss';
 import useTypedSelector from '../../../hooks/useTypedSelector';

@@ -1,5 +1,7 @@
 import { ButtonHTMLAttributes } from 'react';
+
 import cn from 'classnames/bind';
+
 import style from './PaginationPage.module.scss';
 
 const cx = cn.bind(style);

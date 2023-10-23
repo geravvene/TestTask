@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useMemo } from 'react';
 import { bindActionCreators } from 'redux';
+
 import { themeSlice } from '../store/theme/theme.slice';
 
 const rootActions = {
