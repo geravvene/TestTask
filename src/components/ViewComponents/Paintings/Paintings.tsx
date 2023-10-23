@@ -1,8 +1,9 @@
 /* eslint-disable no-underscore-dangle */
-import Card from "../../ReUseComponents/Card/Card";
-import Pagination from "../../ReUseComponents/Pagination/Pagination";
-import { TPainting, TParams, IPaintingList } from "../../../types";
-import style from "./paintings.module.scss";
+import { useCallback } from 'react';
+import Card from '../../ReUseComponents/Card/Card';
+import Pagination from '../../ReUseComponents/Pagination/Pagination';
+import { TPainting, TParams, IPaintingList } from '../../../types';
+import style from './paintings.module.scss';
 
 interface IPaintings extends IPaintingList {
   data: TPainting[];
@@ -21,6 +22,9 @@ function Paintings({
   pagesAmount,
   isDark = false,
 }: IPaintings) {
+  const changePage = useCallback((currentPage: number) => {
+    setParams({ ...params, _page: String(currentPage) });
+  }, []);
   return !data.length ? (
     <p>Do not found</p>
   ) : (
@@ -33,22 +37,22 @@ function Paintings({
             description={[
               {
                 id: 1,
-                property: "Author",
+                property: 'Author',
                 value:
                   authors.find((author) => author.id === item.authorId)?.name ??
-                  "Not Stated",
+                  'Not Stated',
               },
               {
                 id: 2,
-                property: "Created",
+                property: 'Created',
                 value: item.created,
               },
               {
                 id: 3,
-                property: "Location",
+                property: 'Location',
                 value:
                   locations.find((location) => location.id === item.locationId)
-                    ?.name ?? "Not Stated",
+                    ?.name ?? 'Not Stated',
               },
             ]}
             className={style.painting}
@@ -58,7 +62,7 @@ function Paintings({
               src={`https://test-front.framework.team${item.imageUrl}`}
               loading="lazy"
               onError={(e) => {
-                e.currentTarget.src = `https://test-front.framework.team${item.imageUrl}`
+                e.currentTarget.src = `https://test-front.framework.team${item.imageUrl}`;
                 e.currentTarget.onerror = null;
               }}
             />
@@ -69,9 +73,7 @@ function Paintings({
         className=""
         pagesAmount={pagesAmount}
         currentPage={Number(params._page)}
-        onChange={(currentPage) => {
-          setParams({ ...params, _page: String(currentPage) });
-        }}
+        onChange={changePage}
         isDarkTheme={isDark}
       />
     </>
