@@ -39,6 +39,13 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
     ref.current!.style.setProperty('height', '0px');
     setHover(0);
   }, []);
+  const onHover = useCallback(
+    (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+      setHover(e.currentTarget.value);
+      hoverFunction(e.currentTarget, ref.current!);
+    },
+    []
+  );
   return (
     <>
       <div ref={ref} className={cx('hoverBlock', { dark: isDark })} />
@@ -47,10 +54,8 @@ function FilterUL({ data, onClick, filterName, isDark }: IFilterUL) {
           <li
             className={cx({ hover: hover === item.id })}
             key={item.id}
-            onMouseEnter={(e) => {
-              setHover(item.id);
-              hoverFunction(e.currentTarget, ref.current!);
-            }}
+            value={item.id}
+            onMouseEnter={onHover}
             onMouseLeave={resetHover}
           >
             <button
