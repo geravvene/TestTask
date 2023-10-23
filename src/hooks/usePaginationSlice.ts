@@ -1,16 +1,7 @@
 import { useMemo } from 'react';
 
-const usePaginationSlice = ({
-  current,
-  amount,
-}: {
-  current: number;
-  amount: number;
-}): number[] => {
-  const arr = useMemo(
-    (): number[] => Array.from({ length: amount }, (_, i) => i + 1),
-    [amount]
-  );
+const usePaginationSlice = ({ current, amount }: { current: number; amount: number }): number[] => {
+  const arr = useMemo((): number[] => Array.from({ length: amount }, (_, i) => i + 1), [amount]);
 
   return useMemo(() => {
     if (current <= 1) return arr.slice(0, 3);

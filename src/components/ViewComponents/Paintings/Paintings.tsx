@@ -12,7 +12,9 @@ interface IPaintings extends IPaintingList {
 }
 
 function isEquals(prev: IPaintings, next: IPaintings) {
-  return isEqual(prev.authors, next.authors) && isEqual(prev.locations, next.locations) && isEqual(prev.data, next.data);
+  return (
+    isEqual(prev.authors, next.authors) && isEqual(prev.locations, next.locations) && isEqual(prev.data, next.data)
+  );
 }
 
 const imgError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -48,7 +50,12 @@ function Paintings({ data, authors, locations }: IPaintings) {
           ]}
           className={style.painting}
         >
-          <img alt={item.name} src={`https://test-front.framework.team${item.imageUrl}`} loading="lazy" onError={imgError} />
+          <img
+            alt={item.name}
+            src={`https://test-front.framework.team${item.imageUrl}`}
+            loading="lazy"
+            onError={imgError}
+          />
         </Card>
       ))}
     </div>
