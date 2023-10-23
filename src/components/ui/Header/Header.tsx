@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import cn from 'classnames/bind';
 import style from './header.module.scss';
 import useActions from '../../../hooks/useActions';
@@ -7,11 +8,14 @@ import { ReactComponent as Logo } from '../../../assets/svg/logo.svg';
 const cx = cn.bind(style);
 
 interface IHeader {
-  isDark: boolean
+  isDark: boolean;
 }
 
 function Header({ isDark }: IHeader) {
   const { change } = useActions();
+  const clickChange = useCallback(() => {
+    change();
+  }, []);
   return (
     <header
       className={cx('header', {
@@ -19,7 +23,7 @@ function Header({ isDark }: IHeader) {
       })}
     >
       <Logo />
-      <button type="button" onClick={() => change()}>
+      <button type="button" onClick={clickChange}>
         <Light />
       </button>
     </header>
