@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 
-import {stringify} from 'qs';
+import { stringify } from 'qs';
 
 import DataService from '../../../services/data.service';
 import style from './paintingsList.module.scss';
@@ -20,20 +20,20 @@ const deleteEmptyStringProperties = (obj: object) => Object.fromEntries(Object.e
 function PaintingList({ authors, locations }: IPaintingList) {
   const { isDark } = useTypedSelector((state) => state.themeReducer);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [params, setParams] = useState<TParams>({
-    _page: '1',
-    name_like: '',
-    authorId: '',
-    locationId: '',
-    created_gte: '',
-    created_lte: '',
-  });
+  const [params, setParams] = useState<TParams>(
+    (): TParams => ({
+      _page: '1',
+      name_like: '',
+      authorId: '',
+      locationId: '',
+      created_gte: '',
+      created_lte: '',
+      ...Object.fromEntries([...searchParams]),
+    })
+  );
   const { data, isLoading, isFetching, isError } = useQuery(['paintings', stringify(params)], () =>
     DataService.getResponse(`paintings`, { ...deleteEmptyStringProperties(params), _limit: limit })
   );
-  useEffect(() => {
-    setParams({ ...params, ...Object.fromEntries([...searchParams]) });
-  }, []);
   useEffect(() => {
     setSearchParams(stringify(deleteEmptyStringProperties(params)));
   }, [params]);
