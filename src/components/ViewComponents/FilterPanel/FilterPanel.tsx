@@ -40,7 +40,7 @@ function valueToCreated(str: string, func: (str: string) => void) {
   func(newStr);
 }
 
-function FilterPanel({ authors, locations, isDark = false, params, setParams }: IFilterPanel) {
+function FilterPanel({ authors, locations, isDark, params, setParams }: IFilterPanel) {
   const setFilter = useCallback(
     (property: string, value: string) => {
       setParams({ ...params, [property]: value, _page: '1' });

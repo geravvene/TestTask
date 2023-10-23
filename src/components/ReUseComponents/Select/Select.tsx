@@ -29,7 +29,7 @@ function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
   const clearSelect = useCallback((e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     clear();
-  }, []);
+  }, [clear]);
   return (
     <div
       role="button"

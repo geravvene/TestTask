@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 
-import qs from 'qs';
+import {stringify} from 'qs';
 
 import DataService from '../../../services/data.service';
 import style from './paintingsList.module.scss';
@@ -28,14 +28,14 @@ function PaintingList({ authors, locations }: IPaintingList) {
     created_gte: '',
     created_lte: '',
   });
-  const { data, isLoading, isFetching, isError } = useQuery(['paintings', qs.stringify(params)], () =>
-    DataService.getResponse(`paintings?${qs.stringify(deleteEmptyStringProperties(params))}&_limit=${limit}`)
+  const { data, isLoading, isFetching, isError } = useQuery(['paintings', stringify(params)], () =>
+    DataService.getResponse(`paintings`, { ...deleteEmptyStringProperties(params), _limit: limit })
   );
   useEffect(() => {
     setParams({ ...params, ...Object.fromEntries([...searchParams]) });
   }, []);
   useEffect(() => {
-    setSearchParams(qs.stringify(deleteEmptyStringProperties(params)));
+    setSearchParams(stringify(deleteEmptyStringProperties(params)));
   }, [params]);
   const changePage = useCallback((currentPage: number) => {
     setParams({ ...params, _page: String(currentPage) });
