@@ -19,13 +19,7 @@ interface IPagination {
   onChange: (currentPage: number) => void;
 }
 
-function Pagination({
-  currentPage = 1,
-  isDarkTheme = false,
-  pagesAmount,
-  className,
-  onChange,
-}: IPagination) {
+function Pagination({ currentPage = 1, isDarkTheme = false, pagesAmount, className, onChange }: IPagination) {
   const slicedPagesArray = usePaginationSlice({
     current: currentPage,
     amount: pagesAmount,
@@ -33,44 +27,22 @@ function Pagination({
 
   return (
     <div className={cx(className, 'Pagination')}>
-      <PaginationPage
-        isDarkTheme={isDarkTheme}
-        disabled={currentPage < 2}
-        onClick={() => onChange(1)}
-      >
+      <PaginationPage isDarkTheme={isDarkTheme} disabled={currentPage < 2} onClick={() => onChange(1)}>
         <DoubleArrowL />
       </PaginationPage>
-      <PaginationPage
-        isDarkTheme={isDarkTheme}
-        disabled={currentPage < 2}
-        onClick={() => onChange(currentPage - 1)}
-      >
+      <PaginationPage isDarkTheme={isDarkTheme} disabled={currentPage < 2} onClick={() => onChange(currentPage - 1)}>
         <ArrowL />
       </PaginationPage>
 
       {slicedPagesArray.map((el) => (
-        <PaginationPageWithActive
-          isDarkTheme={isDarkTheme}
-          onClick={() => onChange(el)}
-          isActive={currentPage === el}
-          key={el}
-          disabled={false}
-        >
+        <PaginationPageWithActive isDarkTheme={isDarkTheme} onClick={() => onChange(el)} isActive={currentPage === el} key={el} disabled={false}>
           {el}
         </PaginationPageWithActive>
       ))}
-      <PaginationPage
-        isDarkTheme={isDarkTheme}
-        disabled={currentPage >= pagesAmount}
-        onClick={() => onChange(currentPage + 1)}
-      >
+      <PaginationPage isDarkTheme={isDarkTheme} disabled={currentPage >= pagesAmount} onClick={() => onChange(currentPage + 1)}>
         <ArrowR />
       </PaginationPage>
-      <PaginationPage
-        isDarkTheme={isDarkTheme}
-        disabled={currentPage >= pagesAmount}
-        onClick={() => onChange(pagesAmount)}
-      >
+      <PaginationPage isDarkTheme={isDarkTheme} disabled={currentPage >= pagesAmount} onClick={() => onChange(pagesAmount)}>
         <DoubleArrowR />
       </PaginationPage>
     </div>

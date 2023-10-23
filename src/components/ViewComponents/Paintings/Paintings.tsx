@@ -11,11 +11,7 @@ interface IPaintings extends IPaintingList {
 }
 
 function isEquals(prev: IPaintings, next: IPaintings) {
-  return (
-    isEqual(prev.authors, next.authors) &&
-    isEqual(prev.locations, next.locations) &&
-    isEqual(prev.data, next.data)
-  );
+  return isEqual(prev.authors, next.authors) && isEqual(prev.locations, next.locations) && isEqual(prev.data, next.data);
 }
 
 function Paintings({ data, authors, locations }: IPaintings) {
@@ -31,9 +27,7 @@ function Paintings({ data, authors, locations }: IPaintings) {
             {
               id: 1,
               property: 'Author',
-              value:
-                authors.find((author) => author.id === item.authorId)?.name ??
-                'Not Stated',
+              value: authors.find((author) => author.id === item.authorId)?.name ?? 'Not Stated',
             },
             {
               id: 2,
@@ -43,9 +37,7 @@ function Paintings({ data, authors, locations }: IPaintings) {
             {
               id: 3,
               property: 'Location',
-              value:
-                locations.find((location) => location.id === item.locationId)
-                  ?.name ?? 'Not Stated',
+              value: locations.find((location) => location.id === item.locationId)?.name ?? 'Not Stated',
             },
           ]}
           className={style.painting}

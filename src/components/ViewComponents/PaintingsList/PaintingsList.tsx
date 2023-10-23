@@ -15,8 +15,7 @@ import Pagination from '../../ReUseComponents/Pagination/Pagination';
 
 const limit = 12;
 
-const deleteEmptyStringProperties = (obj: object) =>
-  Object.fromEntries(Object.entries(obj).filter((v) => v[1] !== ''));
+const deleteEmptyStringProperties = (obj: object) => Object.fromEntries(Object.entries(obj).filter((v) => v[1] !== ''));
 
 function PaintingList({ authors, locations }: IPaintingList) {
   const { isDark } = useTypedSelector((state) => state.themeReducer);
@@ -29,14 +28,8 @@ function PaintingList({ authors, locations }: IPaintingList) {
     created_gte: '',
     created_lte: '',
   });
-  const { data, isLoading, isFetching, isError } = useQuery(
-    ['paintings', qs.stringify(params)],
-    () =>
-      DataService.getResponse(
-        `paintings?${qs.stringify(
-          deleteEmptyStringProperties(params)
-        )}&_limit=${limit}`
-      )
+  const { data, isLoading, isFetching, isError } = useQuery(['paintings', qs.stringify(params)], () =>
+    DataService.getResponse(`paintings?${qs.stringify(deleteEmptyStringProperties(params))}&_limit=${limit}`)
   );
   useEffect(() => {
     setParams({ ...params, ...Object.fromEntries([...searchParams]) });
@@ -49,21 +42,11 @@ function PaintingList({ authors, locations }: IPaintingList) {
   }, []);
   return (
     <>
-      <FilterPanel
-        params={params}
-        setParams={setParams}
-        authors={authors}
-        locations={locations}
-        isDark={isDark}
-      />
+      <FilterPanel params={params} setParams={setParams} authors={authors} locations={locations} isDark={isDark} />
       <div className={style.content}>
         {isLoading || isFetching || isError ? null : (
           <>
-            <Paintings
-              data={data.data}
-              authors={authors}
-              locations={locations}
-            />
+            <Paintings data={data.data} authors={authors} locations={locations} />
             <Pagination
               className=""
               pagesAmount={Math.ceil(data.headers['x-total-count'] / limit)}

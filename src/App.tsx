@@ -15,16 +15,8 @@ const cx = cn.bind(style);
 function App() {
   const { isDark } = useTypedSelector((state) => state.themeReducer);
   const authors = useQuery(['authors'], () => DataService.getData('authors'));
-  const locations = useQuery(['locations'], () =>
-    DataService.getData('locations')
-  );
-  if (
-    authors.isLoading ||
-    authors.isFetching ||
-    locations.isLoading ||
-    locations.isFetching
-  )
-    return null;
+  const locations = useQuery(['locations'], () => DataService.getData('locations'));
+  if (authors.isLoading || authors.isFetching || locations.isLoading || locations.isFetching) return null;
   if (authors.isError || locations.isError) return <p>Error</p>;
   return (
     <BrowserRouter>
@@ -39,13 +31,13 @@ function App() {
             element={
               <PaintingList
                 authors={authors.data}
-                locations={locations.data.map((item : TLocation) => ({
+                locations={locations.data.map((item: TLocation) => ({
                   id: item.id,
                   name: item.location,
                 }))}
               />
             }
-            path='*'
+            path="*"
           />
         </Routes>
       </main>

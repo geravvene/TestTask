@@ -6,17 +6,10 @@ import style from './PaginationPage.module.scss';
 const cx = cn.bind(style);
 
 interface IProps extends PaginationPageProps {
-  isActive: boolean
+  isActive: boolean;
 }
 
-function PaginationPageWithActive({
-  isDarkTheme,
-  isActive,
-  className,
-  disabled,
-  onClick,
-  children,
-}: IProps) {
+function PaginationPageWithActive({ isDarkTheme, isActive, className, disabled, onClick, children }: IProps) {
   return (
     <PaginationPage
       isDarkTheme={isDarkTheme}

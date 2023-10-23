@@ -12,6 +12,5 @@ const DataService = {
   async getImg(path: string) {
     return (await axios.get(path, { responseType: 'arraybuffer' })).data;
   },
- 
 };
 export default DataService;

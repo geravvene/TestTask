@@ -19,24 +19,17 @@ export interface ISelect {
   clear: () => void;
 }
 
-const toggleSelect = (
-  e:
-    | React.MouseEvent<HTMLDivElement, MouseEvent>
-    | React.KeyboardEvent<HTMLDivElement>
-) => {
+const toggleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>) => {
   e.currentTarget.classList.toggle(style.active);
 };
 
 function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
   const ref = useRef<HTMLInputElement>(null);
   useOutsideClick(ref, () => ref.current?.classList.remove(style.active));
-  const clearSelect = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      e.stopPropagation();
-      clear();
-    },
-    []
-  );
+  const clearSelect = useCallback((e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
+    clear();
+  }, []);
   return (
     <div
       role="button"
