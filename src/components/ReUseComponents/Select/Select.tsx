@@ -27,7 +27,7 @@ function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
     []
   );
   const toggleSelect = useCallback(
-    (e: any) => {
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>) => {
       e.currentTarget.classList.toggle(style.active);
     },
     []
