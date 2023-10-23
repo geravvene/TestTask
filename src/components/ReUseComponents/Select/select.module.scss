@@ -58,7 +58,7 @@
     color 0ms;
   div {
     display: flex;
-    width: calc(100% - 13px);
+    width: calc(100% - 20px);
     align-items: center;
     justify-content: space-between;
     p {
@@ -67,11 +67,13 @@
       text-overflow: ellipsis;
     }
     button {
-      padding: 0 3px;
-      margin-right: 0.6rem;
-      margin-left: 0.6rem;
+      width: 18px;
+      height: 18px;
       border-radius: 0.75rem;
       transition: 200ms;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       &:hover {
         background-color: black;
         svg {
