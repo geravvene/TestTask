@@ -1,4 +1,4 @@
-import { useCallback, memo } from 'react';
+import { useCallback, memo, useMemo } from 'react';
 import { isEqual, omit } from 'lodash';
 import debounce from 'debounce';
 import cn from 'classnames/bind';
@@ -51,6 +51,15 @@ function FilterPanel({
     },
     [params]
   );
+  const currentLocation = useMemo(
+    () =>
+      locations.find((location) => location.id === Number(params?.locationId)),
+    [params, locations]
+  );
+  const currentAuthor = useMemo(
+    () => authors.find((author) => author.id === Number(params?.authorId)),
+    [params, authors]
+  );
   return (
     <div className={style.container}>
       <div>
@@ -58,8 +67,8 @@ function FilterPanel({
           className={cx('searchInput', {
             dark: isDark,
           })}
-          placeholder='Name'
-          type='text'
+          placeholder="Name"
+          type="text"
           defaultValue={params.name_like}
           onChange={debounce(
             (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -69,10 +78,8 @@ function FilterPanel({
         />
       </div>
       <Select
-        name='Author'
-        value={
-          authors.find((author) => author.id === Number(params.authorId))?.name
-        }
+        name="Author"
+        value={currentAuthor?.name}
         clear={() => setFilter('authorId', '')}
         isDark={isDark}
         absolute
@@ -80,17 +87,13 @@ function FilterPanel({
         <FilterUL
           data={authors}
           change={setFilter}
-          filterName='authorId'
+          filterName="authorId"
           isDark={isDark}
         />
       </Select>
       <Select
-        name='Location'
-        value={
-          locations.find(
-            (location) => location.id === Number(params?.locationId)
-          )?.name
-        }
+        name="Location"
+        value={currentLocation?.name}
         clear={() => setFilter('locationId', '')}
         isDark={isDark}
         absolute
@@ -98,12 +101,12 @@ function FilterPanel({
         <FilterUL
           data={locations}
           change={setFilter}
-          filterName='locationId'
+          filterName="locationId"
           isDark={isDark}
         />
       </Select>
       <Select
-        name='Created'
+        name="Created"
         value={
           params.created_gte || params.created_lte
             ? `${params.created_gte ? params.created_gte : '...'} - ${
@@ -126,9 +129,9 @@ function FilterPanel({
       >
         <div className={style.inputContainer}>
           <input
-            id='inputCreatedFrom'
-            placeholder='from'
-            type='text'
+            id="inputCreatedFrom"
+            placeholder="from"
+            type="text"
             defaultValue={params.created_gte}
             onClick={(e) => {
               e.stopPropagation();
@@ -143,9 +146,9 @@ function FilterPanel({
           />
           —
           <input
-            type='text'
-            placeholder='before'
-            id='inputCreatedTo'
+            type="text"
+            placeholder="before"
+            id="inputCreatedTo"
             defaultValue={params.created_lte}
             onClick={(e) => {
               e.stopPropagation();
