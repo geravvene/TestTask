@@ -1,4 +1,5 @@
-import { useCallback } from 'react';
+import { useCallback, memo } from 'react';
+import { isEqual, omit } from 'lodash';
 import debounce from 'debounce';
 import cn from 'classnames/bind';
 import style from './filterPanel.module.scss';
@@ -12,6 +13,16 @@ interface IFilterPanel extends IPaintingList {
   params: TParams;
   setParams: React.Dispatch<React.SetStateAction<TParams>>;
   isDark: boolean;
+}
+
+function isEquals(prev: IFilterPanel, next: IFilterPanel) {
+  return (
+    isEqual(prev.authors, next.authors) &&
+    isEqual(prev.locations, next.locations) &&
+    prev.isDark === next.isDark &&
+    isEqual(omit(prev.params, '_page'), omit(next.params, '_page')) &&
+    isEqual(prev.setParams, next.setParams)
+  );
 }
 
 function valueToCreated(str: string, func: (str: string) => void) {
@@ -34,9 +45,12 @@ function FilterPanel({
   params,
   setParams,
 }: IFilterPanel) {
-  const setFilter = useCallback((property: string, value: string) => {
-    setParams({ ...params, [property]: value, _page: '1' });
-  }, [params]);
+  const setFilter = useCallback(
+    (property: string, value: string) => {
+      setParams({ ...params, [property]: value, _page: '1' });
+    },
+    [params]
+  );
   return (
     <div className={style.container}>
       <div>
@@ -150,4 +164,4 @@ function FilterPanel({
   );
 }
 
-export default FilterPanel;
+export default memo(FilterPanel, isEquals);
