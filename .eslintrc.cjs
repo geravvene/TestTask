@@ -7,7 +7,6 @@ module.exports = {
     'airbnb',
     'airbnb-typescript',
     'plugin:react/jsx-runtime',
-    'plugin:import/recommended',
     'prettier',
   ],
   parserOptions: {
@@ -26,5 +25,4 @@ module.exports = {
     },
   ],
   plugins: ['@typescript-eslint', 'react'],
-  rules: {},
 };

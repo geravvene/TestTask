@@ -22,5 +22,12 @@
     "types": ["vite-plugin-svgr/client", "jquery"]
   },
   "include": ["vite.config.ts", ".eslintrc.cjs", "src", "global.d.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "baseUrl": ".",
+  "paths": {
+    "@/*": ["src*"],
+    "@svg/*": ["src/assets/svg/*"],
+    "@types": ["src/types.tsx"],
+    "@hooks": ["src/hooks/*"],
+  }
 }

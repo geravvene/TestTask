@@ -7,7 +7,7 @@ const DataService = {
     return (await axios.get(path)).data;
   },
   async getResponse(path: string, params: object) {
-    return axios.get(path, {params});
+    return axios.get(path, { params });
   },
   async getImg(path: string) {
     return (await axios.get(path, { responseType: 'arraybuffer' })).data;

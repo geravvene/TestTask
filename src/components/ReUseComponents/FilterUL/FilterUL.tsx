@@ -15,7 +15,10 @@ interface IFilterUL {
 
 const hoverFunction = (elem: HTMLLIElement, hoverElem: HTMLDivElement) => {
   hoverElem.style.setProperty('height', `${elem.clientHeight}px`);
-  hoverElem.style.setProperty('margin-top', `${elem.getBoundingClientRect().y - hoverElem.parentElement!.getBoundingClientRect().y}px`);
+  hoverElem.style.setProperty(
+    'margin-top',
+    `${elem.getBoundingClientRect().y - hoverElem.parentElement!.getBoundingClientRect().y}px`
+  );
 };
 
 function FilterUL({ data, change, filterName, isDark }: IFilterUL) {
@@ -40,7 +43,13 @@ function FilterUL({ data, change, filterName, isDark }: IFilterUL) {
       <div ref={ref} className={cx('hoverBlock', { dark: isDark })} />
       <ul className={cx('filter', { dark: isDark })} onScroll={resetHover}>
         {data.map((item) => (
-          <li className={cx({ hover: hover === item.id })} key={item.id} value={item.id} onMouseEnter={onHover} onMouseLeave={resetHover}>
+          <li
+            className={cx({ hover: hover === item.id })}
+            key={item.id}
+            value={item.id}
+            onMouseEnter={onHover}
+            onMouseLeave={resetHover}
+          >
             <button type="button" value={item.id} onClick={onClickChange}>
               {item.name}
             </button>
