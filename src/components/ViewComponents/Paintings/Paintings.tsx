@@ -13,7 +13,6 @@ interface IPaintings extends IPaintingList {
 
 function isEquals(prev: IPaintings, next: IPaintings) {
   return (
-    // eslint-disable-next-line max-len
     isEqual(prev.authors, next.authors) && isEqual(prev.locations, next.locations) && isEqual(prev.data, next.data)
   );
 }
