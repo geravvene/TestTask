@@ -43,9 +43,9 @@ function valueToCreated(str: string, func: (str: string) => void) {
 function FilterPanel({ authors, locations, isDark, params, setParams }: IFilterPanel) {
   const setFilter = useCallback(
     (property: string, value: string) => {
-      setParams({ ...params, [property]: value, _page: '1' });
+      setParams((prev)=> ({ ...prev, [property]: value, _page: '1' }));
     },
-    [params]
+    []
   );
   const currentLocation = useMemo(
     () => locations.find((location) => location.id === Number(params?.locationId)),
@@ -57,14 +57,14 @@ function FilterPanel({ authors, locations, isDark, params, setParams }: IFilterP
   );
   const inputSearchChange = useCallback(
     debounce((e: React.ChangeEvent<HTMLInputElement>) => setFilter(e.target.id, e.target.value), 1000),
-    [params]
+    []
   );
   const inputRangeChange = useCallback(
     debounce(
       (e: React.ChangeEvent<HTMLInputElement>) => valueToCreated(e.target.value, (str) => setFilter(e.target.id, str)),
       1000
     ),
-    [params]
+    []
   );
   return (
     <div className={style.container}>
