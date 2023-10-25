@@ -38,7 +38,6 @@ function FilterUL({ data, change, filterName, isDark }: IFilterUL) {
     },
     [change]
   );
-  if (filterName==="locationId") console.log("dddd")
   return (
     <>
       <div ref={ref} className={cx('hoverBlock', { dark: isDark })} />
