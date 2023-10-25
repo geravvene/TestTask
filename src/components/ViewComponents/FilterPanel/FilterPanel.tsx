@@ -1,6 +1,6 @@
 import { useCallback, memo, useMemo } from 'react';
 
-import { isEqual, omit } from 'lodash';
+import { omit, isEqual} from 'lodash';
 import debounce from 'debounce';
 import cn from 'classnames/bind';
 
@@ -19,11 +19,11 @@ interface IFilterPanel extends IPaintingList {
 
 function isEquals(prev: IFilterPanel, next: IFilterPanel) {
   return (
-    isEqual(prev.authors, next.authors) &&
-    isEqual(prev.locations, next.locations) &&
+    prev.authors === next.authors &&
+    prev.locations === next.locations &&
     prev.isDark === next.isDark &&
     isEqual(omit(prev.params, '_page'), omit(next.params, '_page')) &&
-    isEqual(prev.setParams, next.setParams)
+    prev.setParams === next.setParams
   );
 }
 
@@ -41,12 +41,9 @@ function valueToCreated(str: string, func: (str: string) => void) {
 }
 
 function FilterPanel({ authors, locations, isDark, params, setParams }: IFilterPanel) {
-  const setFilter = useCallback(
-    (property: string, value: string) => {
-      setParams((prev)=> ({ ...prev, [property]: value, _page: '1' }));
-    },
-    []
-  );
+  const setFilter = useCallback((property: string, value: string) => {
+    setParams((prev) => ({ ...prev, [property]: value, _page: '1' }));
+  }, [setParams]);
   const currentLocation = useMemo(
     () => locations.find((location) => location.id === Number(params?.locationId)),
     [params, locations]

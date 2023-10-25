@@ -1,7 +1,6 @@
 import { useRef, useState, useCallback, memo } from 'react';
 
 import cn from 'classnames/bind';
-import { isEqual } from 'lodash';
 
 import style from './filterUL.module.scss';
 
@@ -14,14 +13,6 @@ interface IFilterUL {
   isDark: boolean;
 }
 
-function isEquals(prev: IFilterUL, next: IFilterUL) {
-  return (
-    isEqual(prev.data, next.data) &&
-    prev.change === next.change &&
-    prev.filterName === next.filterName &&
-    prev.isDark === next.isDark
-  );
-}
 const hoverFunction = (elem: HTMLLIElement, hoverElem: HTMLDivElement) => {
   hoverElem.style.setProperty('height', `${elem.clientHeight}px`);
   hoverElem.style.setProperty(
@@ -47,6 +38,7 @@ function FilterUL({ data, change, filterName, isDark }: IFilterUL) {
     },
     [change]
   );
+  if (filterName==="locationId") console.log("dddd")
   return (
     <>
       <div ref={ref} className={cx('hoverBlock', { dark: isDark })} />
@@ -69,4 +61,4 @@ function FilterUL({ data, change, filterName, isDark }: IFilterUL) {
   );
 }
 
-export default memo(FilterUL, isEquals);
+export default memo(FilterUL);

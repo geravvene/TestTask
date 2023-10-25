@@ -38,8 +38,8 @@ function PaintingList({ authors, locations }: IPaintingList) {
     setSearchParams(stringify(deleteEmptyStringProperties(params)));
   }, [params]);
   const changePage = useCallback((currentPage: number) => {
-    setParams({ ...params, _page: String(currentPage) });
-  }, [params]);
+    setParams((prev)=>({ ...prev, _page: String(currentPage) }));
+  }, [setParams]);
   return (
     <>
       <FilterPanel params={params} setParams={setParams} authors={authors} locations={locations} isDark={isDark} />
