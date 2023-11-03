@@ -5,7 +5,6 @@
   overflow-y: scroll;
   width: calc(100% - 6px);
   li {
-    color: black;
     button {
       width: 100%;
       font-size: 16px;
@@ -18,7 +17,6 @@
   }
   &.dark {
     li {
-      color: white;
       &.hover {
         color: black;
       }

@@ -1,8 +1,6 @@
 .menu {
   cursor: pointer;
   position: relative;
-  border-color: black;
-  color: black;
   & > div {
     background: white;
   }
@@ -10,11 +8,9 @@
     fill: rgba(0, 0, 0, 0.3);
   }
   &.dark {
-    border-color: white;
     svg {
       fill: rgba(255, 255, 255, 0.3);
     }
-    color: white;
     & > div {
       background: #0c0c0c;
     }
@@ -62,6 +58,7 @@
     align-items: center;
     justify-content: space-between;
     p {
+      width: calc(100% - 20px);
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;

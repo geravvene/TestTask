@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
+
 import cn from 'classnames/bind';
+
 import style from './header.module.scss';
 import useActions from '../../../hooks/useActions';
 import { ReactComponent as Light } from '../../../assets/svg/light.svg';

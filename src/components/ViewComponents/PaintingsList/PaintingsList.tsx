@@ -31,7 +31,7 @@ function PaintingList({ authors, locations }: IPaintingList) {
       ...Object.fromEntries([...searchParams]),
     })
   );
-  const { data, isLoading, isFetching, isError } = useQuery(['paintings', stringify(params)], () =>
+  const { data, isLoading, isError } = useQuery(['paintings', stringify(params)], () =>
     DataService.getResponse(`paintings`, { ...deleteEmptyStringProperties(params), _limit: limit })
   );
   useEffect(() => {
@@ -44,7 +44,7 @@ function PaintingList({ authors, locations }: IPaintingList) {
     <>
       <FilterPanel params={params} setParams={setParams} authors={authors} locations={locations} isDark={isDark} />
       <div className={style.content}>
-        {isLoading || isFetching || isError ? null : (
+        {isLoading || isError ? null : (
           <>
             <Paintings data={data.data} authors={authors} locations={locations} />
             <Pagination
