@@ -25,11 +25,14 @@ const toggleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.Ke
 
 function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
   const ref = useRef<HTMLInputElement>(null);
+
   useOutsideClick(ref, () => ref.current?.classList.remove(style.active));
+
   const clearSelect = useCallback((e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     clear();
   }, [clear]);
+  
   return (
     <div
       role="button"

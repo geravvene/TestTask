@@ -44,18 +44,22 @@ function FilterPanel({ authors, locations, isDark, params, setParams }: IFilterP
   const setFilter = useCallback((property: string, value: string) => {
     setParams((prev) => ({ ...prev, [property]: value, _page: '1' }));
   }, [setParams]);
+
   const currentLocation = useMemo(
     () => locations.find((location) => location.id === Number(params?.locationId)),
     [params, locations]
   );
+
   const currentAuthor = useMemo(
     () => authors.find((author) => author.id === Number(params?.authorId)),
     [params, authors]
   );
+
   const inputSearchChange = useCallback(
     debounce((e: React.ChangeEvent<HTMLInputElement>) => setFilter(e.target.id, e.target.value), 1000),
     []
   );
+
   const inputRangeChange = useCallback(
     debounce(
       (e: React.ChangeEvent<HTMLInputElement>) => valueToCreated(e.target.value, (str) => setFilter(e.target.id, str)),
@@ -63,6 +67,7 @@ function FilterPanel({ authors, locations, isDark, params, setParams }: IFilterP
     ),
     []
   );
+  
   return (
     <div className={style.container}>
       <div>

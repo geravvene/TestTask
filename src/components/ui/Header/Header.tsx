@@ -15,9 +15,11 @@ interface IHeader {
 
 function Header({ isDark }: IHeader) {
   const { change } = useActions();
+
   const clickChange = useCallback(() => {
     change();
   }, []);
+  
   return (
     <header
       className={cx('header', {

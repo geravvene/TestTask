@@ -19,7 +19,9 @@ const deleteEmptyStringProperties = (obj: object) => Object.fromEntries(Object.e
 
 function PaintingList({ authors, locations }: IPaintingList) {
   const { isDark } = useTypedSelector((state) => state.themeReducer);
+
   const [searchParams, setSearchParams] = useSearchParams();
+
   const [params, setParams] = useState(
     (): TParams => ({
       _page: '1',
@@ -31,15 +33,19 @@ function PaintingList({ authors, locations }: IPaintingList) {
       ...Object.fromEntries([...searchParams]),
     })
   );
+
   const { data, isLoading, isError } = useQuery(['paintings', stringify(params)], () =>
     DataService.getResponse(`paintings`, { ...deleteEmptyStringProperties(params), _limit: limit })
   );
+
   useEffect(() => {
     setSearchParams(stringify(deleteEmptyStringProperties(params)));
   }, [params]);
+
   const changePage = useCallback((currentPage: number) => {
     setParams((prev)=>({ ...prev, _page: String(currentPage) }));
   }, [setParams]);
+  
   return (
     <>
       <FilterPanel params={params} setParams={setParams} authors={authors} locations={locations} isDark={isDark} />

@@ -23,21 +23,26 @@ const hoverFunction = (elem: HTMLLIElement, hoverElem: HTMLDivElement) => {
 
 function FilterUL({ data, change, filterName, isDark }: IFilterUL) {
   const [hover, setHover] = useState(0);
+
   const ref = useRef<HTMLDivElement>(null);
+
   const resetHover = useCallback(() => {
     ref.current!.style.setProperty('height', '0px');
     setHover(0);
   }, []);
+
   const onHover = useCallback((e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     setHover(e.currentTarget.value);
     hoverFunction(e.currentTarget, ref.current!);
   }, []);
+
   const onClickChange = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       change(filterName, String(e.currentTarget.value));
     },
     [change]
   );
+  
   return (
     <>
       <div ref={ref} className={cx('hoverBlock', { dark: isDark })} />
