@@ -1,6 +1,6 @@
 import { useCallback, memo, useMemo } from 'react';
 
-import { omit, isEqual} from 'lodash';
+import { omit, isEqual } from 'lodash';
 import debounce from 'debounce';
 import cn from 'classnames/bind';
 
@@ -27,23 +27,19 @@ function isEquals(prev: IFilterPanel, next: IFilterPanel) {
   );
 }
 
-function valueToCreated(str: string, func: (str: string) => void) {
-  if (str === '') {
-    func(str);
-    return;
-  }
-  if (!Number(str) || !(str.length <= 4)) return;
-  let newStr = str;
-  while (newStr.length < 4) {
-    newStr += '0';
-  }
-  func(newStr);
-}
+const valueToCreated = (str: string) =>
+  str +
+  Array(4 - str.length)
+    .fill('0')
+    .join('');
 
 function FilterPanel({ authors, locations, isDark, params, setParams }: IFilterPanel) {
-  const setFilter = useCallback((property: string, value: string) => {
-    setParams((prev) => ({ ...prev, [property]: value, _page: '1' }));
-  }, [setParams]);
+  const setFilter = useCallback(
+    (property: string, value: string) => {
+      setParams((prev) => ({ ...prev, [property]: value, _page: '1' }));
+    },
+    [setParams]
+  );
 
   const currentLocation = useMemo(
     () => locations.find((location) => location.id === Number(params?.locationId)),
@@ -62,12 +58,13 @@ function FilterPanel({ authors, locations, isDark, params, setParams }: IFilterP
 
   const inputRangeChange = useCallback(
     debounce(
-      (e: React.ChangeEvent<HTMLInputElement>) => valueToCreated(e.target.value, (str) => setFilter(e.target.id, str)),
+      ({ target: { id, value } }: React.ChangeEvent<HTMLInputElement>) =>
+        (!Number(value) || !(value.length <= 4)) && value ? null : setFilter(id, value ? valueToCreated(value) : value),
       1000
     ),
     []
   );
-  
+
   return (
     <div className={style.container}>
       <div>

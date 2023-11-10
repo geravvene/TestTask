@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState } from 'react';
 
 import cn from 'classnames/bind';
 
@@ -19,20 +19,23 @@ export interface ISelect {
   clear: () => void;
 }
 
-const toggleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.KeyboardEvent<HTMLDivElement>) => {
-  e.currentTarget.classList.toggle(style.active);
-};
-
 function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
   const ref = useRef<HTMLInputElement>(null);
 
-  useOutsideClick(ref, () => ref.current?.classList.remove(style.active));
+  const [active, setActive] = useState(false);
 
-  const clearSelect = useCallback((e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.stopPropagation();
-    clear();
-  }, [clear]);
-  
+  useOutsideClick(ref, () => setActive(false));
+
+  const handleToggleActive = () => setActive(!active);
+
+  const clearSelect = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.stopPropagation();
+      clear();
+    },
+    [clear]
+  );
+
   return (
     <div
       role="button"
@@ -41,8 +44,9 @@ function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
       className={cx('menu', {
         dark: isDark,
         absolute,
+        active,
       })}
-      onClick={toggleSelect}
+      onClick={handleToggleActive}
     >
       <div className={style.choice}>
         {value ? (
