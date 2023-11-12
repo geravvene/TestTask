@@ -20,7 +20,7 @@ export interface ISelect {
 }
 
 function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
-  const ref = useRef<HTMLInputElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const [active, setActive] = useState(false);
 

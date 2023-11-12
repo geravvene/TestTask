@@ -1,20 +1,10 @@
 /* eslint-disable no-self-assign */
-import { memo } from 'react';
-
-import { isEqual } from 'lodash';
-
 import Card from '../../ReUseComponents/Card/Card';
 import { TPainting, IPaintingList } from '../../../types';
 import style from './paintings.module.scss';
 
 interface IPaintings extends IPaintingList {
   data: TPainting[];
-}
-
-function isEquals(prev: IPaintings, next: IPaintings) {
-  return (
-    isEqual(prev.authors, next.authors) && isEqual(prev.locations, next.locations) && isEqual(prev.data, next.data)
-  );
 }
 
 const imgError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -61,4 +51,4 @@ function Paintings({ data, authors, locations }: IPaintings) {
     </div>
   );
 }
-export default memo(Paintings, isEquals);
+export default Paintings ;

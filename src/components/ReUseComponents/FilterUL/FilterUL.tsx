@@ -8,8 +8,7 @@ const cx = cn.bind(style);
 
 interface IFilterUL {
   data: { id: number; name: string }[];
-  change: (filterName: string, value: any) => void;
-  filterName: string;
+  change: (value: string) => void;
   isDark: boolean;
 }
 
@@ -21,7 +20,7 @@ const hoverFunction = (elem: HTMLLIElement, hoverElem: HTMLDivElement) => {
   );
 };
 
-function FilterUL({ data, change, filterName, isDark }: IFilterUL) {
+function FilterUL({ data, change, isDark }: IFilterUL) {
   const [hover, setHover] = useState(0);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -38,7 +37,7 @@ function FilterUL({ data, change, filterName, isDark }: IFilterUL) {
 
   const onClickChange = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      change(filterName, String(e.currentTarget.value));
+      change(e.currentTarget.value);
     },
     [change]
   );
@@ -55,7 +54,7 @@ function FilterUL({ data, change, filterName, isDark }: IFilterUL) {
             onMouseEnter={onHover}
             onMouseLeave={resetHover}
           >
-            <button type="button" value={item.id} onClick={onClickChange}>
+            <button type="button" value={JSON.stringify(item)} onClick={onClickChange}>
               {item.name}
             </button>
           </li>
