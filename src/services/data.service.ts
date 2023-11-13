@@ -1,14 +1,16 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://test-front.framework.team/';
+const instance = axios.create({
+  baseURL: import.meta.env.VITE_REQUEST_URL,
+});
 
 const DataService = {
   async getData(path: string) {
-    return (await axios.get(path)).data;
+    return (await instance.get(path)).data;
   },
 
   async getResponse(path: string, params: object) {
-    return axios.get(path, { params });
+    return instance.get(path, { params });
   }
 };
 

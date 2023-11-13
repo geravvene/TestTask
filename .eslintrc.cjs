@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['airbnb', 'airbnb-typescript', 'plugin:react/jsx-runtime', 'prettier'],
+  extends: ['airbnb', 'airbnb-typescript', 'plugin:react/jsx-runtime', 'prettier', 'import-resolver-alias'],
   parserOptions: {
     project: './tsconfig.json',
     parser: '@typescript-eslint/parser',
