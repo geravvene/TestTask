@@ -19,7 +19,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "types": ["vite-plugin-svgr/client", "jquery"],
+    "types": ["vite-plugin-svgr/client"],
     "paths": {
       "@/*": ["./src/*"],
       "@svg/*": ["./assets/svg/*"],
