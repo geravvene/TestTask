@@ -20,7 +20,7 @@ const hoverFunction = (elem: HTMLLIElement, hoverElem: HTMLDivElement) => {
   );
 };
 
-export function FilterUL({ data, change, isDark }: IFilterUL) {
+export function FilterUL({ data=[], change=()=>{}, isDark }: IFilterUL) {
   const [hover, setHover] = useState(0);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -54,7 +54,7 @@ export function FilterUL({ data, change, isDark }: IFilterUL) {
             onMouseEnter={onHover}
             onMouseLeave={resetHover}
           >
-            <button type="button" value={JSON.stringify(item)} onClick={onClickChange}>
+            <button value={JSON.stringify(item)} onClick={onClickChange}>
               {item.name}
             </button>
           </li>

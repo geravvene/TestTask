@@ -8,7 +8,7 @@ import useTheme from '@/hooks/useTheme';
 import { TParams, IPaintingList } from '@/types';
 import Paintings from './Paintings/Paintings';
 import FilterPanel from './FilterPanel/FilterPanel';
-import Pagination from '@/components/Pagination/Pagination';
+import Pagination from '@/components/Pagination/PaginationBar/PaginationBar';
 
 const limit = 12;
 
@@ -29,7 +29,7 @@ function PaintingList({ authors, locations }: IPaintingList) {
     })
   );
 
-  const { data, isLoading, isError } = useQuery(['paintings', new URLSearchParams((params)).toString()], () =>
+  const { data, isLoading, isError } = useQuery(['paintings', new URLSearchParams(params).toString()], () =>
     DataService.getResponse(`paintings`, { ...deleteEmptyStringProperties(params), _limit: limit })
   );
 

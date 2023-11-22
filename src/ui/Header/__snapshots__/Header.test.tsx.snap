@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component renders correctly 1`] = `
+<div>
+  <header
+    class="header dark"
+  >
+    <svg />
+    <button
+      type="button"
+    >
+      <svg />
+    </button>
+  </header>
+</div>
+`;

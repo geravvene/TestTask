@@ -1,6 +1,6 @@
-import Pagination, {IPagination} from './Pagination';
-import PaginationPage, {IPaginationPage} from './PaginationPage';
-import PaginationPageWithActive from './PaginationPageWithActive';
+import Pagination, { IPagination } from './PaginationBar/PaginationBar';
+import PaginationPage, { IPaginationPage } from './PaginationPage/PaginationPage';
+import PaginationPageWithActive from './PaginationPage/PaginationPageWithActive';
 
 export { Pagination, PaginationPage, PaginationPageWithActive };
 

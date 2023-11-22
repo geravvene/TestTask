@@ -37,7 +37,7 @@ function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
 
   return (
     <div
-      role="button"
+      role="select"
       tabIndex={0}
       ref={ref}
       className={cx('menu', {
@@ -51,7 +51,7 @@ function Select({ children, value, clear, name, isDark, absolute }: ISelect) {
         {value ? (
           <div>
             <p>{value}</p>
-            <button type="button" onClick={clearSelect}>
+            <button type="reset" onClick={clearSelect}>
               <Cross />
             </button>
           </div>

@@ -1,6 +1,6 @@
 import { useCallback, memo } from 'react';
 
-import FilterUL from '@/components/FilterUL/FilterUL';
+import FilterUL from '@/components/FilterUL/FilterUL.tsx';
 import Select from '@/components/Select/Select';
 
 export interface IListFilter {

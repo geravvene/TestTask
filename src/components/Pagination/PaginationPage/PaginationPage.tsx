@@ -14,7 +14,6 @@ export interface IPaginationPage extends ButtonHTMLAttributes<HTMLButtonElement>
 function PaginationPage({ isDarkTheme, className, disabled = false, onClick, children }: IPaginationPage) {
   return (
     <button
-      type="button"
       className={cx(
         'PaginationPage',
         {

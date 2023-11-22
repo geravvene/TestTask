@@ -12,7 +12,7 @@ export interface ICard {
   className: string;
 }
 
-function Card({ name, description, children, className }: ICard) {
+function Card({ name, description=[], children, className }: ICard) {
   return (
     <div className={cx('card', className)}>
       {children}

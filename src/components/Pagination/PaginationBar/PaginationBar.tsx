@@ -1,7 +1,7 @@
 import cn from 'classnames/bind';
 
-import PaginationPageWithActive from './PaginationPageWithActive';
-import PaginationPage from './PaginationPage';
+import PaginationPageWithActive from '../PaginationPage/PaginationPageWithActive';
+import PaginationPage from '../PaginationPage/PaginationPage';
 import { ReactComponent as DoubleArrowL } from '../../../assets/svg/doubleArrowL.svg';
 import { ReactComponent as ArrowR } from '../../../assets/svg/arrowR.svg';
 import { ReactComponent as DoubleArrowR } from '../../../assets/svg/doubleArrowR.svg';
