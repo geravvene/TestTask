@@ -3,7 +3,7 @@ import { useRef, useCallback, useState, PropsWithChildren } from 'react';
 
 import cn from 'classnames/bind';
 
-import style from './select.module.scss';
+import style from './Select.module.scss';
 import { ReactComponent as SelectArrow } from '@svg/selectArrow.svg';
 import { ReactComponent as Cross } from '@svg/cross.svg';
 import useOutsideClick from '@/hooks/useOutsideClick';

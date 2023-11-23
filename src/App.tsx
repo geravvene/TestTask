@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import cn from 'classnames/bind';
 
-import style from './app.module.scss';
+import style from './App.module.scss';
 import Header from '@/ui/Header/Header';
 import PaintingList from '@/views/PaintingsList/PaintingsList';
 import DataService from './services/data.service';
@@ -19,8 +19,6 @@ function App() {
   const locations = useQuery(['locations'], () => DataService.getData('locations'));
 
   if (authors.isLoading || locations.isLoading) return null;
-
-  if (authors.isError || locations.isError) return <p>Error</p>;
 
   return (
     <>

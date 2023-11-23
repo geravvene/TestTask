@@ -2,7 +2,7 @@ import { useRef, useState, useCallback, memo } from 'react';
 
 import cn from 'classnames/bind';
 
-import style from './filterUL.module.scss';
+import style from './FilterUL.module.scss';
 
 const cx = cn.bind(style);
 

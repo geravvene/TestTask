@@ -1,6 +1,6 @@
 import Card from '@/components/Card/Card';
 import { TPainting, IPaintingList } from '@/types';
-import style from './paintings.module.scss';
+import style from './Paintings.module.scss';
 
 interface IPaintings extends IPaintingList {
   data: TPainting[];

@@ -2,8 +2,10 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
+import { Audio } from 'react-loader-spinner';
+
 import DataService from '@/services/data.service';
-import style from './paintingsList.module.scss';
+import style from './PaintingsList.module.scss';
 import useTheme from '@/hooks/useTheme';
 import { TParams, IPaintingList } from '@/types';
 import Paintings from './Paintings/Paintings';
@@ -29,7 +31,7 @@ function PaintingList({ authors, locations }: IPaintingList) {
     })
   );
 
-  const { data, isLoading, isError } = useQuery(['paintings', new URLSearchParams(params).toString()], () =>
+  const { data, isLoading} = useQuery(['paintings', new URLSearchParams(params).toString()], () =>
     DataService.getResponse(`paintings`, { ...deleteEmptyStringProperties(params), _limit: limit })
   );
 
@@ -48,12 +50,14 @@ function PaintingList({ authors, locations }: IPaintingList) {
     <>
       <FilterPanel params={params} setParams={setParams} authors={authors} locations={locations} isDark={isDark} />
       <div className={style.content}>
-        {isLoading || isError ? null : (
+        {isLoading ? (
+          <Audio height="80" width="80" color="white" ariaLabel="three-dots-loading" wrapperClass={style.spinnerWrapper} />
+        ) : (
           <>
-            <Paintings data={data.data} authors={authors} locations={locations} />
+            <Paintings data={data?.data} authors={authors} locations={locations} />
             <Pagination
               className=""
-              pagesAmount={Math.ceil(data.headers['x-total-count'] / limit)}
+              pagesAmount={Math.ceil(data?.headers['x-total-count'] / limit)}
               currentPage={Number(params._page)}
               onChange={changePage}
               isDarkTheme={isDark}

@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import cn from 'classnames/bind';
 
-import style from './filterPanel.module.scss';
+import style from './FilterPanel.module.scss';
 import { TParams, IPaintingList } from '@/types';
 import Input from '@/components/Input/Input';
 import RangeFilter from '@/components/RangeFilter/RangeFilter';

@@ -1,6 +1,6 @@
 import cn from 'classnames/bind';
 
-import style from './card.module.scss';
+import style from './Card.module.scss';
 import { TDescriptionLine } from '@/types';
 
 const cx = cn.bind(style);

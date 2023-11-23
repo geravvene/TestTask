@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import cn from 'classnames/bind';
 
-import style from './header.module.scss';
+import style from './Header.module.scss';
 import useTheme from '@/hooks/useTheme';
 import { ReactComponent as Light } from '@svg/light.svg';
 import { ReactComponent as Logo } from '@svg/logo.svg';
